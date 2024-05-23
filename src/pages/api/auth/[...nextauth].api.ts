@@ -9,7 +9,6 @@ export function buildNextAuthOptions(
 ): NextAuthOptions {
   return {
     adapter: PrismaAdapter(req, res),
-    // Configure one or more authentication providers
     providers: [
       GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID ?? '',
@@ -21,6 +20,7 @@ export function buildNextAuthOptions(
           },
         },
         profile(profile: GoogleProfile) {
+          // função que mapeia o perfil retornado pelo Google para o formato esperado pelo NextAuth
           return {
             id: profile.sub,
             name: profile.name,
@@ -30,7 +30,6 @@ export function buildNextAuthOptions(
           }
         },
       }),
-      // ...add more providers here
     ],
 
     callbacks: {
