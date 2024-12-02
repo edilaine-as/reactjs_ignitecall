@@ -33,9 +33,9 @@ interface CalendarProps {
   onDateSelected: (date: Date) => void
 }
 
-const router = useRouter()
 
 export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
+  const router = useRouter()
   const [currentDate, setCurrentDate] = useState(() => {
     return dayjs().set('date', 1)
   })
